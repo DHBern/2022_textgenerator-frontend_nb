@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+import Author from "$lib/Author.svelte";
+import Config from "$lib/Config.svelte";
+import { config } from "$lib/stores";
+
+</script>
+
+{#if !$config.author}
+    <Author />
+{:else if !$config.temp || !$config.input}
+    <Config />
+{/if}
