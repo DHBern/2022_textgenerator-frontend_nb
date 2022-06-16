@@ -4,12 +4,10 @@ import Config from "$lib/Config.svelte";
 import { config } from "$lib/stores";
 </script>
 
-{#if !$config.author}
-    <Author />
-{:else if !$config.temp || !$config.input}
+<Author />
+
+{#if $config.author}
     <Config />
-{:else}
-    <a href="/result">to the result!</a>
 {/if}
 
 { JSON.stringify($config) }
