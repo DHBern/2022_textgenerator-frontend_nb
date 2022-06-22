@@ -33,12 +33,15 @@
 
 	const payload = {
 		inputs: `Ich denke über ${$config.input},`,
-		temperature: $config.temp,
-		top_k: 50,
-		max_length: 1000,
-		num_return_sequences: 20,
-		wait_for_model: false,
-		use_cache: false
+		parameters: {
+			temperature: $config.temp,
+			top_k: 50,
+			num_return_sequences: 20,
+		},
+		options: {
+			wait_for_model: false,
+			use_cache: false
+		},
 	};
 
 	onMount(async () => {
