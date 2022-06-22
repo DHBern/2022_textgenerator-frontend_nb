@@ -5,14 +5,14 @@
 <section>
 	<h2>What should I write about?</h2>
 	<p>
-		"Heute habe ich vor, über <input
+		"Ich denke über <input
 			type="text"
 			placeholder="das Wandern"
 			pattern="[^ ]+ ?[^ ]+"
 			on:input={(e) => {
 				$config.input = e.target.checkValidity() ? e.target.value : '';
 			}}
-		/> zu schreiben."
+		/>, ..."
 	</p>
 </section>
 
