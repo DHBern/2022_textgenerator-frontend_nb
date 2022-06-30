@@ -31,6 +31,7 @@ body {
     color: white;
     @include normal-font;
     padding: 6vw;
+    text-align: justify;
 }
 a {
     color: var(--pink);

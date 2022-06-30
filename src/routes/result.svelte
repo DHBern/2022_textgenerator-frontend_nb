@@ -6,8 +6,8 @@
 	import { onMount } from 'svelte';
 
 	let queryCounter = 0;
-    /** @type {[{generated_text: string}]} */
-	let sentences = [{generated_text: 'Lade Sätze...'}];
+	/** @type {[{generated_text: string}]} */
+	let sentences = [{ generated_text: 'Lade Sätze...' }];
 
 	async function query(data) {
 		const response = await fetch(
@@ -27,7 +27,9 @@
 			console.log('failed');
 			console.log(queryCounter);
 			data.wait_for_model = true;
-			return queryCounter <= 30 ? query(data) : [{ generated_text: 'Da ging etwas bei der Abfrage schief.' }];
+			return queryCounter <= 30
+				? query(data)
+				: [{ generated_text: 'Da ging etwas bei der Abfrage schief.' }];
 		}
 	}
 
@@ -36,12 +38,12 @@
 		parameters: {
 			temperature: $config.temp,
 			top_k: 50,
-			num_return_sequences: 20,
+			num_return_sequences: 20
 		},
 		options: {
 			wait_for_model: false,
 			use_cache: false
-		},
+		}
 	};
 
 	onMount(async () => {
@@ -54,28 +56,63 @@
 	});
 </script>
 
-{#if sentences.error}
-	<p class="error">{sentences.error}</p>
-{/if}
+<main>
+	{#if sentences.error}
+		<p class="error">{sentences.error}</p>
+	{/if}
 
-{#if sentences[0].generated_text === 'Lade Sätze...'}
-    // TODO: show loading indicator
-    <p>'Lade Sätze...'</p>
+	{#if sentences[0].generated_text === 'Lade Sätze...'}
+		<p>'Lade Sätze...'</p>
+	{:else}
+		{#each sentences as sentence}
+			{@const id = crypto.randomUUID()}
 
-{:else}
-
-    {#each sentences as sentence}
-        <p>{JSON.stringify(sentence.generated_text)}</p>
-    {/each}
-
-    <a href="/" on:click={config.reset}>Zurück zur Startseite</a>
-
-{/if}
-
-<Print />
-<Qrcode />
-
-{JSON.stringify($config)}
+			<input type="checkbox" {id} />
+			<label for={id}>{JSON.stringify(sentence.generated_text)}</label>
+		{/each}
+	{/if}
+</main>
+<aside>
+	<a href="/" on:click={config.reset}>Zurück zur Startseite</a>
+	<Print />
+	<Qrcode />
+</aside>
 
 <style lang="scss">
+	main {
+		display: grid;
+		gap: 1rem;
+		/*max-height: 80vh;
+		overflow-y: scroll;*/
+	}
+	label {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+		transition: 0.2s;
+		background-color: var(--light-blue);
+		padding: 3rem;
+		cursor: pointer;
+
+		&:hover {
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+		}
+		&:checked {
+			background-color: var(--pink);
+		}
+	}
+	:checked + label {
+		background-color: var(--pink);
+	}
+
+	input[type='checkbox'] {
+		display: none;
+	}
+
+	aside {
+		display: grid;
+		width: 100vw;
+		position: fixed;
+		bottom: 0;
+		padding: 3rem 0;
+		background-color: var(--dark-blue);
+	}
 </style>
