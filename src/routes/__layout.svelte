@@ -1,7 +1,7 @@
-<main>
-	<slot />
-</main>
+<script>
+	import '$lib/assets/styles/main.scss';
+</script>
 
-<style lang="scss">
-	@use '../lib/assets/styles/main.scss';
-</style>
+<div class="app">
+	<slot />
+</div>
