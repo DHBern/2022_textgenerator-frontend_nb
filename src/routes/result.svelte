@@ -79,6 +79,7 @@
 </aside>
 
 <style lang="scss">
+	@use '../lib/assets/styles/mixins.scss' as *;
 	main {
 		display: grid;
 		gap: 1rem;
@@ -115,5 +116,7 @@
 		bottom: 0;
 		padding: 3rem 0;
 		background-color: var(--dark-blue);
+	.button {
+		@include button;
 	}
 </style>
