@@ -64,6 +64,7 @@
 	{#if sentences[0].generated_text === 'Lade Sätze...'}
 		<p>'Lade Sätze...'</p>
 	{:else}
+		<h1>Ich habe einige Vorschläge:</h1>
 		{#each sentences as sentence}
 			{@const id = crypto.randomUUID()}
 
@@ -73,13 +74,23 @@
 	{/if}
 </main>
 <aside>
-	<a href="/" on:click={config.reset}>Zurück zur Startseite</a>
-	<Print />
-	<Qrcode />
+	<h2>Die Lyrik mitnehmen:</h2>
+	<div class="container">
+		<Print />
+		<Qrcode />
+		<a class="button" href="/" on:click={config.reset}>Zurück zur Startseite</a>
+	</div>
 </aside>
 
 <style lang="scss">
 	@use '../lib/assets/styles/mixins.scss' as *;
+	h1 {
+		position: sticky;
+		top: 0;
+		background-color: var(--dark-blue);
+		padding: 1rem 0 3rem 0;
+		//box-shadow: 0 8px 22px 0 rgba(0, 0, 0, 0.9);
+	}
 	main {
 		display: grid;
 		gap: 1rem;
@@ -111,11 +122,18 @@
 
 	aside {
 		display: grid;
-		width: 100vw;
+		width: 100%;
 		position: fixed;
 		bottom: 0;
-		padding: 3rem 0;
+		padding: 3rem 6vw;
 		background-color: var(--dark-blue);
+		left: 0;
+		.container {
+			display: flex;
+			gap: 1rem;
+		}
+	}
+
 	.button {
 		@include button;
 	}
