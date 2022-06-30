@@ -1,3 +1,5 @@
+@use './mixins.scss' as *;
+
 /** VARIABLES **/
 :root {
 	--dark-blue: rgb(28, 27, 85);
@@ -16,18 +18,15 @@
 	src: url('$lib/assets/fonts/EuclidSquare-Regular.woff') format('woff');
 }
 
-/** MIXINS **/
-
-@mixin ai-font {
-    font-family: 'Menlo';
-  }
-@mixin normal-font {
-    font-family: 'EuclidSquare';
-  }
-
-
 /** STYLES **/
 
-main {
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+}
+
+body {
+    background-color: var(--dark-blue);
+    color: white;
     @include normal-font;
+    padding: 6vw;
 }
