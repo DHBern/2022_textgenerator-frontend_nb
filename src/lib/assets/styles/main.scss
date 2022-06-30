@@ -21,7 +21,9 @@
 /** STYLES **/
 
 h1, h2, h3, h4, h5, h6 {
-    text-transform: uppercase;
+    @include ai-font;
+    //text-transform: uppercase;
+    color: var(--pink);
 }
 
 body {
@@ -30,3 +32,15 @@ body {
     @include normal-font;
     padding: 6vw;
 }
+a {
+    color: var(--pink);
+    &:visited {
+        color: var(--pink);
+    }
+}
+/*
+.accent-writing {
+    @include ai-font;
+    text-transform: none;
+    color: var(--pink);
+}*/
