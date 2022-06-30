@@ -1,0 +1,33 @@
+/** VARIABLES **/
+:root {
+	--dark-blue: rgb(28, 27, 85);
+	--light-blue: rgb(19, 84, 147);
+	--pink: rgb(228, 40, 106);
+}
+
+/** FONTS **/
+@font-face {
+    font-family: 'Menlo';
+	src: url('$lib/assets/fonts/Menlo.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'EuclidSquare';
+	src: url('$lib/assets/fonts/EuclidSquare-Regular.woff') format('woff');
+}
+
+/** MIXINS **/
+
+@mixin ai-font {
+    font-family: 'Menlo';
+  }
+@mixin normal-font {
+    font-family: 'EuclidSquare';
+  }
+
+
+/** STYLES **/
+
+main {
+    @include normal-font;
+}
