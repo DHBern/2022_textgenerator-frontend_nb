@@ -3,11 +3,17 @@
 	import Config from '$lib/Config.svelte';
 	import { config } from '$lib/stores';
 </script>
+<main>
+	<Author />
 
-<Author />
+	{#if $config.author}
+		<Config />
+	{/if}
+</main>
 
-{#if $config.author}
-	<Config />
-{/if}
-
-{JSON.stringify($config)}
+<style lang="scss">
+	main {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(12rem,1fr));
+	}
+</style>
