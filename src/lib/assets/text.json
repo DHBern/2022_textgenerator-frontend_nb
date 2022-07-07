@@ -1,0 +1,16 @@
+{
+    "walser": {
+        "fullname": "Robert Walser",
+        "firstname": "Robert",
+        "lastname": "Walser",
+        "intro": "Hallo, ich bin Robert Walser. Also eine Künstliche Intelligenz. Ich kann schreiben wie Walser.",
+        "img_src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Robert_Walser.jpg/800px-Robert_Walser.jpg"
+    },
+    "hennings": {
+        "fullname": "Emmy HenningS",
+        "firstname": "Emmy",
+        "lastname": "Hennings",
+        "intro": "Hallo, ich bin Emmy Hennings. Also eine Künstliche Intelligenz. Ich kann schreiben wie Hennings.",
+        "img_src": "https://www.houseofswitzerland.org/sites/default/files/story/gallery/05-Abb2b_EmmyHennings_0.jpg"
+    }
+}
