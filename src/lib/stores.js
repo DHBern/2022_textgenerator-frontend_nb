@@ -11,7 +11,7 @@ function createConfig(defaults) {
     set,
     reset: () => set({
         /** @type {""|"hennings"|"walser"} */
-        author: import.meta.env.VITE_AUTHOR,
+        author: import.meta.env.VITE_AUTHOR ?? '',
         input: '',
         temp: 0.6
     }),
@@ -23,7 +23,7 @@ function createConfig(defaults) {
  */
 export const config = createConfig({
 	/** @type {""|"hennings"|"walser"} */
-	author: import.meta.env.VITE_AUTHOR,
+	author: import.meta.env.VITE_AUTHOR ?? '',
 	input: '',
 	temp: 0.6
 });

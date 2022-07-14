@@ -65,12 +65,11 @@
 		{/if}
 	</main>
 	<aside>
-		<h2>Die Lyrik mitnehmen:</h2>
 		<div class="container">
 			<Print />
 			<Qrcode />
 		</div>
-		<h2>Sie wollen mehr über mich und Robert Walser wissen oder noch einmal eine Anfrage starten?</h2>
+		<h2>Sie wollen mehr über mich und {info[$config?.author]?.fullname} wissen oder noch einmal eine Anfrage starten?</h2>
 		<div class="container">
 			<a class="button" href="/" on:click={config.reset}>Zurück zur Startseite</a>
 			<a class="button" href="/info" on:click={config.reset}>Weitere Informationen</a>
@@ -89,13 +88,19 @@
 		height: calc(100vh - 12vw);
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
 	}
 	main {
 		display: grid;
 		gap: 1rem;
 		/*max-height: 80vh;
 		overflow-y: scroll;*/
+		p {
+			font-size: 2rem;
+			background-color: var(--light-blue);
+			border: .6em solid var(--light-blue);
+			border-radius: 20px;
+		}
 	}
 
 	aside {
