@@ -4,35 +4,56 @@
 </script>
 
 <form action="/result" on:submit|preventDefault={() => goto('result')}>
-	<section>
-		<h2>Worüber soll ich schreiben?</h2>
-		<p>
-			Geben Sie {$config.author === 'hennings' ? 'der Autorin' : 'dem Autoren'} den entscheidenden Anfang
-			seines Satzes vor.
-		</p>
-		<p>
-			"Ich denke über <input
-				type="text"
-				placeholder="das Wandern"
-				pattern="[^ ]+ ?[^ ]+"
-				on:input={(e) => {
-					$config.input = e.target.checkValidity() ? e.target.value : '';
-				}}
-			/>, ..."
-		</p>
-	</section>
+	<h2>Über was soll ich schreiben?</h2>
+	<p>
+		"Heute schreibe ich über <input
+			type="text"
+			placeholder="das Wandern"
+			pattern="[^ ]+ ?[^ ]+"
+			on:input={(e) => {
+				$config.input = e.target.checkValidity() ? e.target.value : '';
+			}}
+		/>, ..."
+	</p>
 
-	<section>
-		<h2>Wie treu soll ich meinem Stil bleiben?</h2>
-		<p>Hier folgt eine kurze Erklärung zur Temperatur.</p>
-		<input type="range" min="0.3" max="0.9" step="0.3" bind:value={$config.temp} />
-	</section>
+	<label for="temperature"
+		>Soll ich Walsers Wortschatz nutzen? Oder seine Art, Sätze zu formen?
+	</label>
+	<div class="rangeslider">
+		<input id="temperature" type="range" min="0.3" max="0.9" step="0.3" bind:value={$config.temp} />
+		<ol>
+			<li>Wortschatz</li>
+			<li>Satzbau</li>
+		</ol>
+	</div>
 
-	<button type="submit" class="submit">Dichten Sie!</button>
+	<button type="submit" class="submit">Schreiben</button>
 </form>
 
 <style lang="scss">
 	@use '../lib/assets/styles/mixins.scss' as *;
+
+	.rangeslider {
+		display: grid;
+		input,ol {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		input {
+			z-index: 1;
+		}
+		ol {
+			display: flex;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			justify-content: space-between;
+			li {
+				margin-top: 2rem;
+			}
+		}
+	}
 
 	form {
 		max-height: fit-content;
@@ -45,18 +66,17 @@
 	input:invalid {
 		border-color: red;
 	}
-	input[type='range'] {
-		width: 50%;
-	}
 	.submit {
-		@include button;
+		width: 100%;
 	}
 
-	h2 {
-		font-size: 2rem;
-	}
+	label,
 	p,
 	input[type='text'] {
 		font-size: 1.5rem;
+	}
+
+	input[type='text'] {
+		width: 12rem;
 	}
 </style>

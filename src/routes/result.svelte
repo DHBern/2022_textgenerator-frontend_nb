@@ -34,7 +34,7 @@
 	}
 
 	const payload = {
-		inputs: `Ich denke über ${$config.input},`,
+		inputs: `Heute schreibe ich über ${$config.input},`,
 		parameters: {
 			temperature: $config.temp,
 			top_k: 100,
@@ -56,25 +56,27 @@
 	});
 </script>
 
-<main><h1 class="visually-hidden">Generierter Satz</h1>
-	{#if sentence}
-		<p>{sentence}</p>
-	{:else}
-		<p>'Ich schreibe...'</p>
-	{/if}
-</main>
-<aside>
-	<h2>Die Lyrik mitnehmen:</h2>
-	<div class="container">
-		<Print />
-		<Qrcode />
-	</div>
-	<h2>Sie wollen mehr über mich und Robert Walser wissen oder noch einmal eine Anfrage starten?</h2>
-	<div class="container">
-		<a class="button" href="/" on:click={config.reset}>Zurück zur Startseite</a>
-		<a class="button" href="/info" on:click={config.reset}>Weitere Informationen</a>
-	</div>
-</aside>
+<div class="result-container">
+	<main><h1 class="visually-hidden">Generierter Satz</h1>
+		{#if sentence}
+			<p>{sentence}</p>
+		{:else}
+			<p>'Ich schreibe...'</p>
+		{/if}
+	</main>
+	<aside>
+		<h2>Die Lyrik mitnehmen:</h2>
+		<div class="container">
+			<Print />
+			<Qrcode />
+		</div>
+		<h2>Sie wollen mehr über mich und Robert Walser wissen oder noch einmal eine Anfrage starten?</h2>
+		<div class="container">
+			<a class="button" href="/" on:click={config.reset}>Zurück zur Startseite</a>
+			<a class="button" href="/info" on:click={config.reset}>Weitere Informationen</a>
+		</div>
+	</aside>
+</div>
 
 <style lang="scss">
 	@use '../lib/assets/styles/mixins.scss' as *;
@@ -82,6 +84,12 @@
 		background-color: var(--dark-blue);
 		padding: 1rem 0 3rem 0;
 		//box-shadow: 0 8px 22px 0 rgba(0, 0, 0, 0.9);
+	}
+	.result-container {
+		height: calc(100vh - 12vw);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 	main {
 		display: grid;
