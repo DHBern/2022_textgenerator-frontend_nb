@@ -3,15 +3,15 @@
         "fullname": "Robert Walser",
         "firstname": "Robert",
         "lastname": "Walser",
-        "intro": "Hallo, ich bin Robert Walser. Also eine Künstliche Intelligenz. Ich kann schreiben wie Walser.",
+        "intro": "Robert Walser (1878 – 1956) war ein Schweizer Schriftsteller. Auch wegen seiner einzigartigen Sprache gilt er heute als einer der wichtigsten Autoren seiner Zeit. ",
         "img_src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Robert_Walser.jpg/800px-Robert_Walser.jpg",
         "api_url": "https://api-inference.huggingface.co/models/dh-unibe/gpt2-ger-walser"
     },
     "hennings": {
-        "fullname": "Emmy HenningS",
+        "fullname": "Emmy Hennings",
         "firstname": "Emmy",
         "lastname": "Hennings",
-        "intro": "Hallo, ich bin Emmy Hennings. Also eine Künstliche Intelligenz. Ich kann schreiben wie Hennings.",
+        "intro": "Emmy Hennings (1885–1948), Schriftstellerin und Künstlerin, beeinflusste die Literatur des 20. Jahrhundert als Mitbegründerin der Dada-Bewegung massgeblich mit. ",
         "img_src": "https://www.houseofswitzerland.org/sites/default/files/story/gallery/05-Abb2b_EmmyHennings_0.jpg",
         "api_url": "https://api-inference.huggingface.co/models/dh-unibe/gpt2-ger-larger-hennings"
     }

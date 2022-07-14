@@ -2,30 +2,51 @@
 	import { config } from '$lib/stores';
 	import info from '$lib/assets/text.json';
 
-	const authors = Object.keys(info);
+	function shuffleArray(array) {
+		let cpArray = array;
+		for (let i = cpArray.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[cpArray[i], cpArray[j]] = [cpArray[j], cpArray[i]];
+		}
+		return cpArray;
+	}
+
+	const authors = shuffleArray(Object.keys(info));
 </script>
 
 {#each authors as author}
-{#if $config.author === author || !$config.author}
-	<section class="author_container" on:click={() => ($config.author = author)}>
-		<img
-			alt="{info[author].fullname}"
-			src="{info[author].img_src}"
-		/>
-		<h2>{info[author].fullname}</h2>
-		<p>{info[author].intro}</p>
-	</section>
-{/if}
+	{#if $config.author === author || !$config.author}
+		<section class="author_container" on:click={() => ($config.author = author)}>
+			<!--<h2>{info[author].fullname}</h2>-->
+			<img
+				alt="{info[author].fullname}"
+				src="{info[author].img_src}"
+			/>
+		</section>
+	{/if}
 {/each}
 
+
 <style lang="scss">
+
 	section {
 		display: grid;
-		//margin: 3rem 0;
-	}
-	img {
-		margin: 5rem auto;
-		width: 30vw;
-		border: 10px solid var(--light-blue);
+		cursor: pointer;
+		&:nth-child(1) {
+			grid-column: 1 / span 2;
+			grid-row: 1 / span 2;
+		}
+
+		&:nth-child(2) {
+			grid-column: 2 / span 2;
+			grid-row: 2 / span 2;
+		}
+
+		img {
+			// margin: 5rem auto;
+			width: 30vw;
+			max-width: 100%;
+			border: 10px solid var(--light-blue);
+		}
 	}
 </style>

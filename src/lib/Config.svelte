@@ -33,6 +33,12 @@
 
 <style lang="scss">
 	@use '../lib/assets/styles/mixins.scss' as *;
+
+	form {
+		max-height: fit-content;
+		grid-column: 2 / -1;
+		grid-row: 2 / -1;
+	}
 	input:valid {
 		border-color: green;
 	}

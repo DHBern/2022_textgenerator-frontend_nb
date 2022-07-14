@@ -21,10 +21,15 @@
 
 /** STYLES **/
 
+html {
+    font-size: 21px;
+}
+
 h1, h2, h3, h4, h5, h6 {
     @include ai-font;
     //text-transform: uppercase;
     color: var(--pink);
+    //font-size: 3rem;
 }
 
 body {
@@ -33,12 +38,17 @@ body {
     @include normal-font;
     padding: 6vw;
     text-align: justify;
+    margin: 0;
 }
 a {
     color: var(--pink);
     &:visited {
         color: var(--pink);
     }
+}
+
+button {
+    @include button;
 }
 /*
 .accent-writing {
