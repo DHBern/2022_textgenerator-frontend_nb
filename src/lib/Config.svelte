@@ -1,6 +1,7 @@
 <script>
 	import { config } from '$lib/stores';
 	import { goto } from '$app/navigation';
+	import info from '$lib/assets/text.json';
 </script>
 
 <form action="/result" on:submit|preventDefault={() => goto('result')}>
@@ -17,7 +18,7 @@
 	</p>
 
 	<label for="temperature"
-		>Soll ich Walsers Wortschatz nutzen? Oder seine Art, Sätze zu formen?
+		>Soll ich {info[$config.author].genitiv} Wortschatz nutzen? Oder {info[$config.author].pronoun}e Art, Sätze zu formen?
 	</label>
 	<div class="rangeslider">
 		<input id="temperature" type="range" min="0.3" max="0.9" step="0.3" bind:value={$config.temp} />
