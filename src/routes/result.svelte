@@ -4,13 +4,14 @@
 	import Qrcode from '$lib/Qrcode.svelte';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import info from '$lib/assets/text.json';
 
 	let queryCounter = 0;
 	let sentence = '';
 
 	async function query(data) {
 		const response = await fetch(
-			`https://api-inference.huggingface.co/models/dh-unibe/gpt2-ger-${$config.author}`,
+			info[$config.author].api_url,
 			{
 				headers: { Authorization: `Bearer ${import.meta.env.VITE_HUGGINGFACE_KEY}` },
 				method: 'POST',
@@ -36,7 +37,7 @@
 		inputs: `Ich denke über ${$config.input},`,
 		parameters: {
 			temperature: $config.temp,
-			top_k: 50,
+			top_k: 100,
 			num_return_sequences: 1
 		},
 		options: {
