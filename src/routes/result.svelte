@@ -97,9 +97,7 @@
 		overflow-y: scroll;*/
 		p {
 			font-size: 2rem;
-			background-color: var(--light-blue);
-			border: .6em solid var(--light-blue);
-			border-radius: 20px;
+			@include bluebox;
 		}
 	}
 

@@ -7,20 +7,26 @@
     font-family: 'EuclidSquare';
   }
 
-  @mixin button {
-    display: block;
-		padding: 1em;
-		margin: 4rem 0;
-		background-color: var(--light-blue);
-		color: white;
-		text-align: center;
-		text-decoration: none;
-		font-size: 1.5em;
-		font-weight: bold;
-		border-radius: 0.25em;
-		border: 0;
-		cursor: pointer;
-		&:hover {
-			background-color: var(--pink);
-		}
-  }
+@mixin button {
+display: block;
+	padding: 1em;
+	margin: 4rem 0;
+	background-color: var(--light-blue);
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.5em;
+	font-weight: bold;
+	border-radius: 0.25em;
+	border: 0;
+	cursor: pointer;
+	&:hover {
+		background-color: var(--pink);
+	}
+}
+
+@mixin bluebox {
+	background-color: var(--light-blue);
+	border: .6em solid var(--light-blue);
+	border-radius: 20px;
+}

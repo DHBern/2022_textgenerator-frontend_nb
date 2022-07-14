@@ -64,7 +64,7 @@
 	.config-container {
 		display: grid;
 		grid-template-columns: 2fr 1fr 2fr;
-		grid-template-rows: 2fr 1fr 2fr;
+		grid-template-rows: 2fr 2fr 2fr;
 		justify-items: center;
 		&--form {
 			grid-template-columns: 2fr 1fr 6fr;

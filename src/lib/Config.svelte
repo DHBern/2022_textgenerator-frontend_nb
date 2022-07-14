@@ -22,8 +22,8 @@
 	<div class="rangeslider">
 		<input id="temperature" type="range" min="0.3" max="0.9" step="0.3" bind:value={$config.temp} />
 		<ol>
-			<li>Wortschatz</li>
-			<li>Satzbau</li>
+			<li class:active={$config.temp === 0.3}>Wortschatz</li>
+			<li class:active={$config.temp === 0.9}>Satzbau</li>
 		</ol>
 	</div>
 
@@ -35,7 +35,8 @@
 
 	.rangeslider {
 		display: grid;
-		input,ol {
+		input,
+		ol {
 			grid-column: 1;
 			grid-row: 1;
 		}
@@ -51,14 +52,18 @@
 			justify-content: space-between;
 			li {
 				margin-top: 2rem;
+				&.active {
+					color: var(--pink);
+				}
 			}
 		}
 	}
 
 	form {
-		max-height: fit-content;
+		height: fit-content;
 		grid-column: 2 / -1;
 		grid-row: 2 / -1;
+		@include bluebox;
 	}
 	input:valid {
 		border-color: green;

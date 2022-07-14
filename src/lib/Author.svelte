@@ -22,6 +22,9 @@
 				alt="{info[author].fullname}"
 				src="{info[author].img_src}"
 			/>
+			{#if !$config.author}
+				<p>{info[author].intro}</p>
+			{/if}
 		</section>
 	{/if}
 {/each}
@@ -45,8 +48,14 @@
 		img {
 			// margin: 5rem auto;
 			width: 30vw;
+			// width: 100%;
+			box-sizing: border-box;
 			max-width: 100%;
 			border: 10px solid var(--light-blue);
+			margin: 0 auto;
+		}
+		p {
+			width: 30vw;
 		}
 	}
 </style>
