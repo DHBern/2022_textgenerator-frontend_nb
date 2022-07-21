@@ -66,7 +66,7 @@
 	</main>
 	<aside>
 		<div class="container">
-			<Print />
+			<Print sentence={sentence} />
 			<Qrcode />
 		</div>
 		<h2>Sie wollen mehr über mich und {info[$config?.author]?.fullname} wissen oder noch einmal eine Anfrage starten?</h2>
