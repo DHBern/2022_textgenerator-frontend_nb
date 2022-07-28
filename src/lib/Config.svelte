@@ -63,7 +63,7 @@
 	form {
 		height: fit-content;
 		grid-column: 2 / -1;
-		grid-row: 2 / -1;
+		grid-row: 2 / span 2;
 		@include bluebox;
 	}
 	input:valid {
