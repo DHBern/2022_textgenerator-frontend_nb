@@ -1,11 +1,12 @@
 import * as fs from 'fs';
 import { exec } from 'child_process';
-import { parseCommandLine } from 'typescript';
 
-
-const pre = `ESC RS
-ESC t 0
-`;
+const pre = `ESC t 0
+GS ( L 6 0 48 69 L1 1 1
+LF
+LF
+LF
+`; // select the correct character table and print the logo with code L1
 const post = `
 ESC d 5
 ESC m
