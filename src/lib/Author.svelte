@@ -73,5 +73,8 @@
 			border: 10px solid var(--light-blue);
 			margin: 0 auto;
 		}
+		p {
+			max-width: 100%;
+		}
 	}
 </style>

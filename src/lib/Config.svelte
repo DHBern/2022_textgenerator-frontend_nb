@@ -2,6 +2,19 @@
 	import { config } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import info from '$lib/assets/text.json';
+
+	let inputField;
+
+	const handleValidity = (e) => {
+		$config.input = e.target.checkValidity() ? e.target.value : '';
+		if(inputField.validity.patternMismatch){
+			inputField.setCustomValidity('Bitte schreiben Sie maximal 2 Worte.');
+			inputField.reportValidity();
+		} else {
+			inputField.setCustomValidity('');
+		}
+	}
+
 </script>
 
 <form action="/result" on:submit|preventDefault={() => goto('result')}>
@@ -11,9 +24,9 @@
 			type="text"
 			placeholder="das Wandern"
 			pattern="[^ ]+ ?[^ ]+"
-			on:input={(e) => {
-				$config.input = e.target.checkValidity() ? e.target.value : '';
-			}}
+			bind:this={inputField}
+			required
+			on:input={handleValidity}
 		/>, ..."
 	</p>
 
