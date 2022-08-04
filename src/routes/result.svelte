@@ -26,6 +26,7 @@
 			queryCounter++;
 			console.log('failed');
 			console.log(queryCounter);
+			await new Promise(r => setTimeout(r, 1000));
 			data.wait_for_model = true;
 			return queryCounter <= 30
 				? query(data)

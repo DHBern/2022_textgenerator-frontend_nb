@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import { exec } from 'child_process';
 import { loadConfigFromFile } from 'vite';
 
-const pre = `ESC t 0
+const pre = `ESC t 9
 GS ( L 6 0 48 69 L1 1 1
 LF
 LF
@@ -14,7 +14,14 @@ ESC m
 `;
 
 const parse = (sentence) => {
-    return sentence.replaceAll('ä', '"84h"').replaceAll('ö', '"94h"').replaceAll('ü', '"81h"');
+    return sentence.replaceAll('ä', '"e4h"')
+        .replaceAll('Ä', '"c4h"')
+        .replaceAll('ö', '"f6h"')
+        .replaceAll('Ö', '"d6h"')
+        .replaceAll('ü', '"fch"')
+        .replaceAll('Ü', '"dch"')
+        .replaceAll('é', '"e9h"')
+        .replaceAll('ß', '"dfh"');
 }
 
 
@@ -25,7 +32,7 @@ export async function POST({ request }) {
     \\"
     "${parse(sentence)}"
     \\" CR LF
-    ${post}`
+    ${post}`;
     let written = new Promise((resolve, reject) => {
         fs.writeFile('binary', message, (err) => {
             if(!err) {
