@@ -14,61 +14,61 @@ ESC m
 `;
 
 const parse = (sentence) => {
-    return sentence.replaceAll('ä', '"e4h"')
-        .replaceAll('Ä', '"c4h"')
-        .replaceAll('ö', '"f6h"')
-        .replaceAll('Ö', '"d6h"')
-        .replaceAll('ü', '"fch"')
-        .replaceAll('Ü', '"dch"')
-        .replaceAll('é', '"e9h"')
-        .replaceAll('ß', '"dfh"');
-}
-
+	return sentence
+		.replaceAll('ä', '"e4h"')
+		.replaceAll('Ä', '"c4h"')
+		.replaceAll('ö', '"f6h"')
+		.replaceAll('Ö', '"d6h"')
+		.replaceAll('ü', '"fch"')
+		.replaceAll('Ü', '"dch"')
+		.replaceAll('é', '"e9h"')
+		.replaceAll('ß', '"dfh"');
+};
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function POST({ request }) {
-    const { sentence } = await request.json();
-    const message = `${pre}
+	const { sentence } = await request.json();
+	const message = `${pre}
     \\"
     "${parse(sentence)}"
     \\" CR LF
     ${post}`;
-    let written = new Promise((resolve, reject) => {
-        fs.writeFile('binary', message, (err) => {
-            if(!err) {
-                resolve('written');
-            } else {
-                reject(err);
-                console.log(`error: ${err.message}`);
-            }
-         });
-    });
-    let sent = new Promise(async (resolve, reject) => {
-        if (await written === 'written') {
-            exec('senddat binary USBPRN', (err, stdout) => {
-                if(!err) {
-                    resolve('sent');
-                } else {
-                    reject(err);
-                    console.log(`error: ${err.message}`);
-                }
-            });
-        }
-    });
+	let written = new Promise((resolve, reject) => {
+		fs.writeFile('binary', message, (err) => {
+			if (!err) {
+				resolve('written');
+			} else {
+				reject(err);
+				console.log(`error: ${err.message}`);
+			}
+		});
+	});
+	let sent = new Promise(async (resolve, reject) => {
+		if ((await written) === 'written') {
+			exec('senddat binary USBPRN', (err, stdout) => {
+				if (!err) {
+					resolve('sent');
+				} else {
+					reject(err);
+					console.log(`error: ${err.message}`);
+				}
+			});
+		}
+	});
 
-    if (await sent === 'sent') {
-        return {
-            status: 200,
-            body: {
-                message: 'sent',
-            },
-        };
-    } else {
-        return {
-            status: 500,
-            body: {
-                message: 'failed',
-            },
-        };
-    }
-  }
+	if ((await sent) === 'sent') {
+		return {
+			status: 200,
+			body: {
+				message: 'sent'
+			}
+		};
+	} else {
+		return {
+			status: 500,
+			body: {
+				message: 'failed'
+			}
+		};
+	}
+}
