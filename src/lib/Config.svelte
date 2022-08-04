@@ -15,6 +15,10 @@
 		}
 	}
 
+	const focus = (/** @type {HTMLInputElement} */ node) => {
+		node.focus();
+	}
+
 </script>
 
 <form action="/result" on:submit|preventDefault={() => goto('result')}>
@@ -22,9 +26,9 @@
 	<p>
 		"Heute schreibe ich über <input
 			type="text"
-			placeholder="das Wandern"
 			pattern="[^ ]+ ?[^ ]+"
 			bind:this={inputField}
+			use:focus
 			required
 			on:input={handleValidity}
 		/>, ..."
