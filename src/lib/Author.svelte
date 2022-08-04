@@ -22,7 +22,7 @@
 		on:click={() => ($config.author = author)}
 	>
 		<img alt={info[author].fullname} src={info[author].img_src} />
-		{#if $config.author !== author}
+		{#if $config.author !== author && $config.author}
 			<p>{info[author].lastname}, übernehmen Sie!</p>
 		{/if}
 	</section>
