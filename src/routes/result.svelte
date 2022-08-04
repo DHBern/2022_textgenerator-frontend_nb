@@ -81,12 +81,10 @@
 		<div class="container">
 			<Print sentence={sentence} />
 			<Qrcode />
-		</div>
-		<h2>Sie wollen mehr über mich und {info[$config?.author]?.fullname} wissen oder noch einmal eine Anfrage starten?</h2>
-		<div class="container">
 			<a class="button" href="/" on:click={config.reset}>Zurück zur Startseite</a>
 			<a class="button" href="/info" on:click={config.reset}>Weitere Informationen</a>
 		</div>
+		<!--<h2>Sie wollen mehr über mich und {info[$config?.author]?.fullname} wissen oder noch einmal eine Anfrage starten?</h2>-->
 	</aside>
 </div>
 
@@ -105,12 +103,22 @@
 	}
 	main {
 		display: grid;
-		gap: 1rem;
+		grid-template-columns: 1fr 10vw;
+		grid-template-rows: 1fr 10vh;
 		/*max-height: 80vh;
 		overflow-y: scroll;*/
 		p {
+			grid-column: 1 / -1;
 			font-size: 2rem;
 			@include bluebox;
+		}
+		img {
+			grid-column: -2;
+			grid-row: -2;
+			width: 10vw;
+			height: auto;
+			object-fit: contain;
+			object-position: bottom;
 		}
 	}
 
@@ -120,9 +128,9 @@
 		.container {
 			display: flex;
 			gap: 1rem;
+			flex-wrap: wrap;
 		}
 	}
-
 	.button {
 		@include button;
 	}
