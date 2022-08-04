@@ -22,6 +22,9 @@ const parse = (sentence) => {
 		.replaceAll('ü', '"fch"')
 		.replaceAll('Ü', '"dch"')
 		.replaceAll('é', '"e9h"')
+		.replaceAll('»', '"bbh"')
+		.replaceAll('«', '"abh"')
+		.replaceAll('', '"CR LF"') // line breaks
 		.replaceAll('ß', '"dfh"');
 };
 

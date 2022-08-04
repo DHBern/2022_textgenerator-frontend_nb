@@ -39,7 +39,8 @@
 		parameters: {
 			temperature: $config.temp,
 			top_k: 100,
-			num_return_sequences: 1
+			num_return_sequences: 1,
+			max_length: 200,
 		},
 		options: {
 			wait_for_model: false,
@@ -47,9 +48,19 @@
 		}
 	};
 
+	const trimEnd = (/** @type {string} */ str) => {
+		const regex = /(?<=\.)\s+[A-ZÄÖÜ](?:.(?!\.\s+[A-ZÄÖÜ][a-zöäü])){3,}$/g;
+		str = str.replace(regex, '');
+		str = str.replaceAll(/\s+/g, ' ');
+		if (!str.endsWith('.')) {
+			str = str + "...";
+		}
+		return str;
+	};
+
 	onMount(async () => {
 		if ($config.author && $config.temp && $config.input) {
-			sentence = await query(payload);
+			sentence = trimEnd(await query(payload));
 		} else {
 			console.log('no author or temp or input, redirecting to home');
 			goto('/');
