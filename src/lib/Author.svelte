@@ -21,11 +21,8 @@
 		class:selected={$config.author === author}
 		on:click={() => ($config.author = author)}
 	>
-		<!--<h2>{info[author].fullname}</h2>-->
 		<img alt={info[author].fullname} src={info[author].img_src} />
-		{#if !$config.author}
-			<p>{info[author].intro}</p>
-		{:else if $config.author !== author}
+		{#if $config.author !== author}
 			<p>{info[author].lastname}, übernehmen Sie!</p>
 		{/if}
 	</section>

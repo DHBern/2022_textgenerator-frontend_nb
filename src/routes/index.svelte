@@ -6,11 +6,13 @@
 </script>
 
 <div class="container">
+	{#if $config.author}
 	<h1>
 		<span class="accent-writing"
-			>{$config.author ? info[$config.author].fullname : 'Autor*innen'}</span
-		> zum Sprechen bringen
+			>{info[$config.author].fullname}</span
+		> zum Schreiben bringen
 	</h1>
+	{/if}
 	<main>
 		{#if !$config.author}
 		<section class="intro">
@@ -21,6 +23,7 @@
 				<button on:click={() => ($config.author = 'hennings')}>Emmy Hennings</button>.
 			</p>
 		</section>
+		<h1>Wer soll für Sie schreiben?</h1>
 		{/if}
 		<div class="config-container { $config.author ? 'config-container--form' : '' }">
 			<Author />

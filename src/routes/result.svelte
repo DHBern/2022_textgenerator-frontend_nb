@@ -69,12 +69,13 @@
 </script>
 
 <div class="result-container">
-	<main><h1 class="visually-hidden">Generierter Satz</h1>
+	<main>
 		{#if sentence}
 			<p>{sentence}</p>
 		{:else}
 			<p>'Ich schreibe...'</p>
 		{/if}
+		<img alt={info[$config.author]?.fullname} src={info[$config.author]?.img_src} />
 	</main>
 	<aside>
 		<div class="container">
