@@ -7,29 +7,32 @@
 
 <div class="container">
 	{#if $config.author}
-	<h1>
+		<!--<h1>
 		<span class="accent-writing"
 			>{info[$config.author].fullname}</span
 		> zum Schreiben bringen
-	</h1>
+	</h1>-->
 	{/if}
 	<main>
 		{#if !$config.author}
-		<section class="intro">
-			<p>
-				Hallo, kommen Sie näher. Nur keine Angst. Ich bin intelligent, künstlich intelligent. Ich
-				schreibe Literatur. Ich kann
-				<button on:click={() => ($config.author = 'walser')}>Robert Walser</button> und
-				<button on:click={() => ($config.author = 'hennings')}>Emmy Hennings</button>.
-			</p>
-		</section>
-		<h1>Wer soll für Sie schreiben?</h1>
+			<section class="intro">
+				<p>
+					Hallo, kommen Sie näher. Nur keine Angst. Ich bin intelligent, künstlich intelligent. Ich
+					schreibe Literatur. Ich kann
+					<button on:click={() => ($config.author = 'walser')}>Robert Walser</button> und
+					<button on:click={() => ($config.author = 'hennings')}>Emmy Hennings</button>.
+				</p>
+			</section>
+			<h1>Wer soll für Sie schreiben?</h1>
 		{/if}
-		<div class="config-container { $config.author ? 'config-container--form' : '' }">
-			<Author />
-
+		<div class="config-container {$config.author ? 'config-container--form' : ''}">
 			{#if $config.author}
 				<Config />
+				<div class="authorbox">
+					<Author />
+				</div>
+			{:else}
+				<Author />
 			{/if}
 		</div>
 	</main>
@@ -47,10 +50,6 @@
 	.intro {
 		padding: 3rem 0;
 	}
-	/*main {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(12rem,1fr));
-	}*/
 
 	button {
 		display: inline;
@@ -66,13 +65,20 @@
 
 	.config-container {
 		max-height: 85vh;
-		display: grid;
-		grid-template-columns: 2fr 1fr 2fr;
-		grid-template-rows: 2fr 2fr 2fr;
+		display: flex;
+		gap: 1em;
 		justify-items: center;
 		&--form {
-			grid-template-columns: 2fr 2fr 6fr 2fr;
-			grid-template-rows: 2fr 1fr 2fr 1fr;
+			flex-direction: column;
+			align-items: center;
+		}
+		.authorbox {
+			width: 100%;
+			height: 15vh;
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: end;
+			gap: .5em;
 		}
 	}
 </style>

@@ -23,52 +23,55 @@
 	>
 		<img alt={info[author].fullname} src={info[author].img_src} />
 		{#if $config.author !== author && $config.author}
-			<p>{info[author].lastname}, übernehmen Sie!</p>
+			<p class="tooltip">{info[author].lastname}, übernehmen Sie!</p>
 		{/if}
 	</section>
 {/each}
 
 <style lang="scss">
+	@use '../lib/assets/styles/mixins.scss' as *;
 	.author_container {
-		width: 100%;
+		height: 100%;
 		min-width: 0;
 		display: flex;
 		flex-direction: column;
 		cursor: pointer;
-		&:nth-child(1) {
-			grid-column: 1 / span 2;
-			grid-row: 1 / span 2;
-			p {
-				width: 33vw;
+
+		.tooltip {
+			@include bluebox;
+
+			display: none;
+			position: absolute;
+			transform: translate(-30%, 7vh);
+		}
+
+		&:hover {
+			.tooltip {
+				display: block;
 			}
 		}
 
-		&:nth-child(2) {
-			grid-column: 2 / span 2;
-			grid-row: 2 / span 2;
-		}
-
 		&.selected {
-			display: grid;
-			grid-column: 1 / span 2;
-			grid-row: 1 / span 2;
+			order: -1;
 		}
 
 		&.not-selected {
-			grid-column: -2;
-			grid-row: -2;
+			align-self: end;
+			height: 50%;
+			width: auto;
 			p {
 				font-size: smaller;
 			}
 		}
 
 		img {
-			min-height: 0;
-			min-width: 0;
+			width: 100%;
+			height:100%;
+			object-fit: cover;
 			box-sizing: border-box;
-			max-width: 100%;
 			border: 10px solid var(--light-blue);
 			margin: 0 auto;
+
 		}
 		p {
 			max-width: 100%;
