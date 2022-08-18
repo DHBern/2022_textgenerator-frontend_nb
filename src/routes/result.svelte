@@ -75,7 +75,7 @@
 		{:else}
 			<p>'Ich schreibe...'</p>
 		{/if}
-		<img alt={info[$config.author]?.fullname} src={info[$config.author]?.img_src} />
+		<img alt={info[$config.author]?.fullname} src={`${$config?.author}.jpg`} />
 	</main>
 	<aside>
 		<div class="container">

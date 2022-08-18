@@ -21,7 +21,7 @@
 		class:selected={$config.author === author}
 		on:click={() => ($config.author = author)}
 	>
-		<img alt={info[author].fullname} src={info[author].img_src} />
+		<img alt={info[author].fullname} src={`${author}.jpg`} />
 		{#if $config.author !== author && $config.author}
 			<p class="tooltip">{info[author].lastname}, übernehmen Sie!</p>
 		{/if}
