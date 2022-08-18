@@ -1,6 +1,15 @@
 <script>
     import { config } from '$lib/stores';
 	import info from '$lib/assets/text.json';
+	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
+
+	onMount(async () => {
+		if (!$config.author) {
+			console.log('no author or temp or input, redirecting to home');
+			goto('/');
+		}
+	});
 </script>
 
 <div class="centered">
