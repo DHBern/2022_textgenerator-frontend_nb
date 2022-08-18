@@ -6,7 +6,6 @@
 		"build": "vite build",
 		"package": "vite package",
 		"preview": "vite preview",
-		"prepare": "vite sync",
 		"check": "svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./jsconfig.json --watch",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
