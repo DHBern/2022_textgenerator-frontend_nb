@@ -8,7 +8,7 @@
   }
 
 @mixin button {
-display: block;
+	display: block;
 	padding: 1em;
 	//margin: 4rem 0;
 	background-color: var(--light-blue);
@@ -29,10 +29,19 @@ display: block;
 	background-color: var(--light-blue);
 	border: .6em solid var(--light-blue);
 	border-radius: 20px;
+	position: relative;
+
 	&::after {
 		content: '';
-		display: block;
-		width: 50px;
-		height: 50px;
+		-webkit-mask: url(./bubble.svg) no-repeat 50% 50%;
+		mask: url(./bubble.svg) no-repeat 50% 50%;
+		mask-size: cover;
+		display: inline-block;
+		position: absolute;
+		width: 90px;
+		height: 90px;
+		right: 0;
+		bottom: -90px;
+		background-color: var(--light-blue);
 	}
 }
