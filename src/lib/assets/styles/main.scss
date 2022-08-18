@@ -22,7 +22,7 @@
 /** STYLES **/
 
 html {
-    font-size: 21px;
+    font-size: 28px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,7 +37,6 @@ body {
     color: white;
     @include normal-font;
     padding: 6vw;
-    text-align: justify;
     margin: 0;
 }
 a {
