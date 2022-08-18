@@ -78,6 +78,9 @@
 		p {
 			font-size: 1.5rem;
 			@include bluebox;
+			&:after {
+				display: none;
+			}
 		}
 	}
 
