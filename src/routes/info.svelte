@@ -18,7 +18,7 @@
 		<h1>{info[$config.author]?.fullname}</h1>
 		<p>{info[$config.author]?.description}</p>
 	</article>
-	<img alt={info[$config.author]?.fullname} src={`${$config?.author}.jpg`} />
+	<img alt={info[$config.author]?.fullname} src={`${$config?.author || 'walser'}.jpg`} />
 </main>
 
 <aside>
