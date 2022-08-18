@@ -40,7 +40,7 @@
 			temperature: $config.temp,
 			top_k: 100,
 			num_return_sequences: 1,
-			max_length: 200,
+			max_length: 150,
 		},
 		options: {
 			wait_for_model: false,
@@ -81,10 +81,9 @@
 		<div class="container">
 			<Print sentence={sentence} />
 			<Qrcode />
-			<a class="button" href="/" on:click={config.reset}>Zurück zur Startseite</a>
-			<a class="button" href="/info" on:click={config.reset}>Weitere Informationen</a>
+			<a class="button" href="/" on:click={config.reset}>Startseite</a>
+			<a class="button" href="/info">Informationen</a>
 		</div>
-		<!--<h2>Sie wollen mehr über mich und {info[$config?.author]?.fullname} wissen oder noch einmal eine Anfrage starten?</h2>-->
 	</aside>
 </div>
 
@@ -111,6 +110,7 @@
 			grid-column: 1 / -1;
 			font-size: 2rem;
 			@include bluebox;
+			margin-top: 0;
 		}
 		img {
 			grid-column: -2;
@@ -124,7 +124,6 @@
 
 	aside {
 		display: grid;
-		padding: 3rem 0;
 		.container {
 			display: flex;
 			gap: 1rem;
