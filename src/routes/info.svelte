@@ -1,30 +1,49 @@
 <script>
     import { config } from '$lib/stores';
+	import info from '$lib/assets/text.json';
 </script>
 
+<div class="centered">
 <main>
 	<article>
-		<h1>Robert Walser und ich</h1>
-
-		<p>
-			Robert Walser (1878 – 1956) war ein Schweizer Schriftsteller. Auch wegen seiner einzigartigen
-			Sprache gilt er heute als einer der wichtigsten Autoren seiner Zeit. Ich bin eine Künstliche
-			Intelligenz. Ich habe mir beigebracht, wie Walser zu schreiben. Dafür habe ich sehr viele
-			seiner Texte gelesen und gelernt, ihn zu imitieren. Inzwischen schreibe ich besser als das
-			Original, finde ich. Oder was meinen Sie? Halten Sie meine Kunst gar für einen Fake? Ich bitte
-			Sie, wir leben im 21. Jahrhundert. Auch die Kreativität ist längst automatisiert.
-		</p>
+		<h1>{info[$config.author]?.fullname}</h1>
+		<p>{info[$config.author]?.description}</p>
 	</article>
+	<img alt={info[$config.author]?.fullname} src={`${$config?.author}.jpg`} />
 </main>
 
 <aside>
     <a class="button" href="/" on:click={config.reset}>Zurück zur Startseite</a>
 </aside>
+</div>
 
 <style lang="scss">
     @use '../lib/assets/styles/mixins.scss' as *;
 
 	.button {
 		@include button;
+	}
+
+	.centered {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
+
+	main {
+		display: flex;
+		gap: 1rem;
+		img {
+			width: 20vw;
+			height: auto;
+			object-fit: contain;
+			object-position: bottom;
+		}
+	}
+
+	aside {
+		margin-top: 2rem;
 	}
 </style>
