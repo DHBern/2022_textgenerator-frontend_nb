@@ -26,5 +26,8 @@
 		"typescript": "^4.7.2",
 		"vite": "^3.0.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"receiptio": "^1.5.0"
+	}
 }
