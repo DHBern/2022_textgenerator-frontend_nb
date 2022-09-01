@@ -13,7 +13,15 @@ function createConfig(defaults) {
         /** @type {""|"hennings"|"walser"} */
         author: import.meta.env.VITE_AUTHOR ?? '',
         input: '',
-        temp: 0.6
+        temp: 0.6,
+        intro: true
+    }),
+    return: () => set({
+        /** @type {""|"hennings"|"walser"} */
+        author: import.meta.env.VITE_AUTHOR ?? '',
+        input: '',
+        temp: 0.6,
+        intro: false
     }),
   }
 }
@@ -25,5 +33,6 @@ export const config = createConfig({
 	/** @type {""|"hennings"|"walser"} */
 	author: import.meta.env.VITE_AUTHOR ?? '',
 	input: '',
-	temp: 0.6
+	temp: 0.6,
+  intro: true
 });
