@@ -28,6 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"onoff": "^6.0.3",
 		"receiptio": "^1.5.0"
 	}
 }
