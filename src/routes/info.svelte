@@ -22,7 +22,7 @@
 </main>
 
 <aside>
-    <a class="button" href="/" on:click={config.reset}>Zurück zur Startseite</a>
+    <a class="button" href="/" on:click={config.return}>Zurück zur Startseite</a>
 </aside>
 </div>
 

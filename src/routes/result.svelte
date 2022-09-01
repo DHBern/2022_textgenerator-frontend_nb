@@ -81,7 +81,7 @@
 		<div class="container">
 			<Print sentence={sentence} />
 			<Qrcode />
-			<a class="button" href="/" on:click={config.reset}>Startseite</a>
+			<a class="button" href="/" on:click={config.return}>Startseite</a>
 			<a class="button" href="/info">Informationen</a>
 		</div>
 	</aside>
