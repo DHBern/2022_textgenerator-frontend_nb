@@ -6,7 +6,7 @@ const options = "-d /dev/usb/lp0";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function POST({ request }) {
-	const { sentence } = await request.json();
+	const { sentence, author } = await request.json();
 	const message = `
 	{image:${imageAsBase64}}
 

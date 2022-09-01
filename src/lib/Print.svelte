@@ -1,4 +1,6 @@
 <script>
+    import info from '$lib/assets/text.json';
+    import { config } from '$lib/stores';
     export let sentence = 'no sentence provided';
 
     const print = async () => {
@@ -6,6 +8,7 @@
 			method: 'POST',
 			body: JSON.stringify({
 				sentence: sentence,
+                author: info[$config.author]?.fullname,
 			})
 		})
     }
