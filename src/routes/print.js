@@ -10,7 +10,7 @@ export async function POST({ request }) {
 	const message = `
 	{image:${imageAsBase64}}
 
-	^^${author}, Bern, ${new Date().toLocaleDateString()}
+	^^${author}, Bern, ${new Date().toLocaleDateString('de-CH')}
 
 	${sentence}
 
