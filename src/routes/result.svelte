@@ -8,16 +8,14 @@
 
 	let queryCounter = 0;
 	let sentence = '';
+	const failedSentence = 'Da ging etwas bei der Abfrage schief.';
 
 	async function query(data) {
-		const response = await fetch(
-			info[$config.author].api_url,
-			{
-				headers: { Authorization: `Bearer ${import.meta.env.VITE_HUGGINGFACE_KEY}` },
-				method: 'POST',
-				body: JSON.stringify(data)
-			}
-		);
+		const response = await fetch(info[$config.author].api_url, {
+			headers: { Authorization: `Bearer ${import.meta.env.VITE_HUGGINGFACE_KEY}` },
+			method: 'POST',
+			body: JSON.stringify(data)
+		});
 		if (response.ok) {
 			const result = await response.json();
 			console.log(result[0].generated_text);
@@ -26,11 +24,9 @@
 			queryCounter++;
 			console.log('failed');
 			console.log(queryCounter);
-			await new Promise(r => setTimeout(r, 1000));
+			await new Promise((r) => setTimeout(r, 1000));
 			data.wait_for_model = true;
-			return queryCounter <= 30
-				? query(data)
-				: 'Da ging etwas bei der Abfrage schief.';
+			return queryCounter <= 30 ? query(data) : failedSentence;
 		}
 	}
 
@@ -40,7 +36,7 @@
 			temperature: $config.temp,
 			top_k: 100,
 			num_return_sequences: 1,
-			max_length: 150,
+			max_length: 150
 		},
 		options: {
 			wait_for_model: false,
@@ -53,14 +49,43 @@
 		str = str.replace(regex, '');
 		str = str.replaceAll(/\s+/g, ' ');
 		if (!str.endsWith('.')) {
-			str = str + "...";
+			str = str + '...';
 		}
 		return str;
 	};
 
+	const postSentence = (/** @type {string} */ sentence) => {
+		const res = fetch('/send', {
+			method: 'POST',
+			body: JSON.stringify({
+				sentence: sentence,
+                author: $config.author,
+			})
+		});
+		return res;
+		/*const n = Date.now();
+		const data = new FormData();
+		data.append('text', sentence);
+		data.append('author', $config.author);
+		data.append('secret', `${n}|${md5(`${n}-${import.meta.env.VITE_SECRET}`)}`);
+
+		const request = new XMLHttpRequest();
+		request.open(
+			'POST',
+			'http://www.nationalbibliothek.ch/admin/app/nb/action/speechtotextupload/'
+		);
+		request.send(data);*/
+	};
+
+	const saveSentence = (sentence) => {};
+
 	onMount(async () => {
 		if ($config.author && $config.temp && $config.input) {
 			sentence = trimEnd(await query(payload));
+			if (sentence !== failedSentence) {
+				postSentence(sentence);
+				saveSentence(sentence);
+			}
 		} else {
 			console.log('no author or temp or input, redirecting to home');
 			goto('/');
@@ -79,7 +104,7 @@
 	</main>
 	<aside>
 		<div class="container">
-			<Print sentence={sentence} />
+			<Print {sentence} />
 			<Qrcode />
 			<a class="button" href="/" on:click={config.return}>Startseite</a>
 			<a class="button" href="/info">Informationen</a>
