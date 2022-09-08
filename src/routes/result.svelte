@@ -63,21 +63,19 @@
 			})
 		});
 		return res;
-		/*const n = Date.now();
-		const data = new FormData();
-		data.append('text', sentence);
-		data.append('author', $config.author);
-		data.append('secret', `${n}|${md5(`${n}-${import.meta.env.VITE_SECRET}`)}`);
-
-		const request = new XMLHttpRequest();
-		request.open(
-			'POST',
-			'http://www.nationalbibliothek.ch/admin/app/nb/action/speechtotextupload/'
-		);
-		request.send(data);*/
 	};
 
-	const saveSentence = (sentence) => {};
+	const saveSentence = (sentence) => {
+		const res = fetch('/save', {
+			method: 'POST',
+			body: JSON.stringify({
+				sentence: sentence,
+                author: $config.author,
+				input: $config.input,
+			})
+		});
+		return res;
+	};
 
 	onMount(async () => {
 		if ($config.author && $config.temp && $config.input) {
