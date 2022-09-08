@@ -72,6 +72,7 @@
 				sentence: sentence,
                 author: $config.author,
 				input: $config.input,
+				temp: $config.temp
 			})
 		});
 		return res;
