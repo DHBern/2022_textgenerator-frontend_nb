@@ -98,6 +98,10 @@
 	});
 </script>
 
+<svelte:head>
+	<script src="https://kit.fontawesome.com/903d4f74d4.js" crossorigin="anonymous"></script>
+</svelte:head>
+
 <div class="result-container">
 	<main>
 		{#if sentence}
@@ -110,7 +114,7 @@
 	<aside>
 		<Print {sentence} />
 		<div class="qr">
-			<Qrcode />
+			<b>Teilen:</b><Qrcode />
 		</div>
 		<a class="button" href="/" on:click={config.return}>Startseite</a>
 		<a class="button" href="/info">Informationen</a>
@@ -141,6 +145,13 @@
 			width: 10vw;
 			@include rounded;
 		}
+	}
+
+	.qr {
+		grid-column: 1 / 3;
+		display: flex;
+		gap: 1rem;
+		align-items: center;
 	}
 
 	aside {
