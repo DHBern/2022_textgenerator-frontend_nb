@@ -27,7 +27,9 @@
 
 @mixin bluebox {
 	background-color: var(--light-blue);
-	border: .6em solid var(--light-blue);
+	border-width: 0.6em;
+	border-style: solid;
+	border-color: var(--light-blue);
 	border-radius: 20px;
 	position: relative;
 
@@ -44,4 +46,14 @@
 		bottom: -90px;
 		background-color: var(--light-blue);
 	}
+}
+
+@mixin rounded {
+	aspect-ratio: 1/1;
+	object-fit: cover;
+	object-position: top;
+	border-width: 10px;
+	border-style: solid;
+	border-color: var(--light-blue);
+	border-radius: 50%;
 }

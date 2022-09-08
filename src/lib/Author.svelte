@@ -56,9 +56,8 @@
 		}
 
 		&.not-selected {
-			align-self: end;
-			height: 50%;
-			width: auto;
+			//align-self: end;
+			width: 50%;
 			p {
 				font-size: smaller;
 			}
@@ -66,12 +65,9 @@
 
 		img {
 			width: 100%;
-			height:100%;
-			object-fit: cover;
 			box-sizing: border-box;
-			border: 10px solid var(--light-blue);
 			margin: 0 auto;
-
+			@include rounded;
 		}
 		p {
 			max-width: 100%;

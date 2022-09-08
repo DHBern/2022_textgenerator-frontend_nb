@@ -9,8 +9,8 @@
 
 	listen({
 		timer: 4 * 60 * 1000,
-		cycle: 1000,
-	})
+		cycle: 1000
+	});
 
 	let queryCounter = 0;
 	let sentence = '';
@@ -42,7 +42,7 @@
 			temperature: $config.temp,
 			top_k: 100,
 			num_return_sequences: 1,
-			max_length: 150
+			max_length: 100
 		},
 		options: {
 			wait_for_model: false,
@@ -65,7 +65,7 @@
 			method: 'POST',
 			body: JSON.stringify({
 				sentence: sentence,
-                author: $config.author,
+				author: $config.author
 			})
 		});
 		return res;
@@ -76,7 +76,7 @@
 			method: 'POST',
 			body: JSON.stringify({
 				sentence: sentence,
-                author: $config.author,
+				author: $config.author,
 				input: $config.input,
 				temp: $config.temp
 			})
@@ -108,22 +108,17 @@
 		<img alt={info[$config.author]?.fullname} src={`${$config?.author || 'walser'}.jpg`} />
 	</main>
 	<aside>
-		<div class="container">
-			<Print {sentence} />
+		<Print {sentence} />
+		<div class="qr">
 			<Qrcode />
-			<a class="button" href="/" on:click={config.return}>Startseite</a>
-			<a class="button" href="/info">Informationen</a>
 		</div>
+		<a class="button" href="/" on:click={config.return}>Startseite</a>
+		<a class="button" href="/info">Informationen</a>
 	</aside>
 </div>
 
 <style lang="scss">
 	@use '../lib/assets/styles/mixins.scss' as *;
-	h1 {
-		background-color: var(--dark-blue);
-		padding: 1rem 0 3rem 0;
-		//box-shadow: 0 8px 22px 0 rgba(0, 0, 0, 0.9);
-	}
 	.result-container {
 		height: calc(100vh - 12vw);
 		display: flex;
@@ -134,8 +129,6 @@
 		display: grid;
 		grid-template-columns: 1fr 10vw;
 		grid-template-rows: 1fr 10vh;
-		/*max-height: 80vh;
-		overflow-y: scroll;*/
 		p {
 			grid-column: 1 / -1;
 			font-size: 2rem;
@@ -146,18 +139,18 @@
 			grid-column: -2;
 			grid-row: -2;
 			width: 10vw;
-			height: auto;
-			object-fit: contain;
-			object-position: bottom;
+			@include rounded;
 		}
 	}
 
 	aside {
 		display: grid;
-		.container {
-			display: flex;
-			gap: 1rem;
-			flex-wrap: wrap;
+		gap: 1rem;
+		div {
+			grid-row: 2;
+		}
+		a {
+			grid-row: 3;
 		}
 	}
 	.button {

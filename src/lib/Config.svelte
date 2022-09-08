@@ -21,8 +21,9 @@
 
 </script>
 
+<h2>Über was soll ich schreiben?</h2>
+
 <form action="/result" on:submit|preventDefault={() => goto('result')}>
-	<h2>Über was soll ich schreiben?</h2>
 	<p>
 		"Heute schreibe ich über <input
 			type="text"
@@ -51,6 +52,9 @@
 <style lang="scss">
 	@use '../lib/assets/styles/mixins.scss' as *;
 
+	h2 {
+		@include bluebox;
+	}
 	.rangeslider {
 		display: grid;
 		input,

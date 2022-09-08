@@ -6,25 +6,20 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { OnMount } from 'fractils';
-/*	import { onIdle } from 'svelte-idle'; // if we don't want to reload the page on idle
+	import { onIdle } from 'svelte-idle';
 
 	onIdle(() => {
 		if (movement) {
-			console.log('idle');
-			config.reset();
-			activeSentences = [];
-			introOver = false;
-			movement = false;
-			movementCheck();
+			console.log('idle home');
+			location.reload();
 		}
-	})*/
+	})
 
 
 	/**
 	 * @type {boolean}
 	 */
 	let movement, introOver = false;
-	let intro = true;
 
 	const sentences = [
 		'Hallo!',
@@ -99,10 +94,10 @@
 					class="config-container {$config.author ? 'config-container--form' : ''}"
 				>
 					{#if $config.author}
-						<Config />
 						<div class="authorbox">
 							<Author />
 						</div>
+						<Config />
 					{:else}
 						<Author />
 					{/if}
@@ -151,11 +146,10 @@
 		justify-items: center;
 		&--form {
 			flex-direction: column;
-			align-items: center;
+			align-items: end;
 		}
 		.authorbox {
-			width: 100%;
-			height: 15vh;
+			width: 50%;
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: end;

@@ -14,11 +14,15 @@
 
 <div class="centered">
 <main>
-	<article>
-		<h1>{info[$config.author]?.fullname}</h1>
-		<p>{info[$config.author]?.description}</p>
-	</article>
 	<img alt={info[$config.author]?.fullname} src={`${$config?.author || 'walser'}.jpg`} />
+	<article>
+		<h1>Informationen</h1>
+		{#if info[$config.author]?.description}
+			{#each info[$config.author]?.description as sentence}
+			<p>{sentence}</p>
+			{/each}
+		{/if}
+	</article>
 </main>
 
 <aside>
@@ -42,14 +46,16 @@
 	}
 
 	main {
-		display: flex;
-		gap: 1rem;
+		display: grid;
 		img {
+			justify-self: end;
 			width: 20vw;
-			height: auto;
-			object-fit: contain;
-			object-position: bottom;
+			@include rounded;
 		}
+	}
+
+	article p {
+		@include bluebox;
 	}
 
 	aside {
