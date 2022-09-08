@@ -5,6 +5,12 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import info from '$lib/assets/text.json';
+	import { listen } from 'svelte-idle';
+
+	listen({
+		timer: 4 * 60 * 1000,
+		cycle: 1000,
+	})
 
 	let queryCounter = 0;
 	let sentence = '';

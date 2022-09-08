@@ -6,6 +6,19 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { OnMount } from 'fractils';
+/*	import { onIdle } from 'svelte-idle'; // if we don't want to reload the page on idle
+
+	onIdle(() => {
+		if (movement) {
+			console.log('idle');
+			config.reset();
+			activeSentences = [];
+			introOver = false;
+			movement = false;
+			movementCheck();
+		}
+	})*/
+
 
 	/**
 	 * @type {boolean}
@@ -26,7 +39,7 @@
 	 */
 	let activeSentences = [];
 
-	onMount(() => {
+	const movementCheck = () => {
 		if ($config.intro) {
 			const moveInterval = setInterval(async () => {
 				if (!movement) {
@@ -37,6 +50,10 @@
 				}
 			}, 1000);
 		}
+	}
+
+	onMount(() => {
+		movementCheck();
 	});
 
 	const addActiveSentences= () => {

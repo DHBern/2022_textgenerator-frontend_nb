@@ -23,6 +23,7 @@
 		"sass": "^1.52.3",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
+		"svelte-idle": "^2.0.3",
 		"typescript": "^4.7.2",
 		"vite": "^3.0.2"
 	},
