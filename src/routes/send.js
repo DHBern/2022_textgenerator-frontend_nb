@@ -1,6 +1,5 @@
 import crypto from 'crypto';
-import axios from 'axios';
-import FormData from 'form-data';
+import nodeFetch from 'node-fetch';
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function POST({ request }) {
@@ -16,18 +15,15 @@ export async function POST({ request }) {
 	data.append('author', author);
 	data.append('source', 'unibe');
 	data.append('secret', `${n}|${hash}`);
-
-	const config = {
-		method: 'post',
-		url: 'http://www.nationalbibliothek.ch/admin/app/nb/action/speechtotextupload/',
-		headers: {
-			...data.getHeaders()
-		},
-		data: data
-	};
 	console.log(data);
 
-	const nbRequest = await axios(config);
+	const nbRequest = await nodeFetch(
+		'http://www.nationalbibliothek.ch/admin/app/nb/action/speechtotextupload/',
+		{
+			method: 'POST',
+			body: data
+		}
+	);
 	console.log(nbRequest);
 	return {
 		status: 200,
@@ -35,21 +31,4 @@ export async function POST({ request }) {
 			message: 'sent'
 		}
 	};
-	/*
-	if ((await result) === 'success') {
-		return {
-			status: 200,
-			body: {
-				message: 'sent'
-			}
-		};
-	} else {
-		return {
-			status: 500,
-			body: {
-				message: 'failed'
-			}
-		};
-	}
-	*/
 }
