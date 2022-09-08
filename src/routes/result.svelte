@@ -14,6 +14,7 @@
 
 	let queryCounter = 0;
 	let sentence = '';
+	let dots = '';
 	const failedSentence = 'Da ging etwas bei der Abfrage schief.';
 
 	async function query(data) {
@@ -85,6 +86,9 @@
 	};
 
 	onMount(async () => {
+		setInterval(() => {
+			dots = dots === '...' ? '' : dots + '.';
+		}, 300);
 		if ($config.author && $config.temp && $config.input) {
 			sentence = trimEnd(await query(payload));
 			if (sentence !== failedSentence) {
@@ -107,7 +111,10 @@
 		{#if sentence}
 			<p>{sentence}</p>
 		{:else}
-			<p>'Ich schreibe...'</p>
+			<p>Ich schreibe{dots}</p>
+			<!--<div class="spinner">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-xl" />
+			</div>-->
 		{/if}
 		<img alt={info[$config.author]?.fullname} src={`${$config?.author || 'walser'}.jpg`} />
 	</main>
@@ -151,6 +158,12 @@
 		grid-column: 1 / 3;
 		display: flex;
 		gap: 1rem;
+		align-items: center;
+	}
+
+	.spinner {
+		display: flex;
+		justify-content: center;
 		align-items: center;
 	}
 
