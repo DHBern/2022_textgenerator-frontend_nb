@@ -3,12 +3,14 @@
 	let qrcode;
     let qrBox;
 
+    export let sentence = '';
+
     const initializeQr = () => {
         //qrcode = new QRCode(qrBox);
         qrcode = new QRCode(qrBox, {
             text: 'http://www.nationalbibliothek.ch',
-            width: 400,
-            height: 400,
+            width: 800,
+            height: 800,
             colorDark: '#000000',
             colorLight: '#ffffff',
             correctLevel: QRCode.CorrectLevel.H
@@ -23,8 +25,7 @@
 
 <svelte:head>
 	<script
-		src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"
-		crossorigin="anonymous" on:load={initializeQr}></script>
+		src="https://cdn.jsdelivr.net/gh/19z/qrcodejs-fixUTF8/qrcode.min.js" on:load={initializeQr}></script>
 </svelte:head>
 
 <div class="lightbox" bind:this={lightbox} on:click="{() => {lightbox.style.display = "none"}}">
@@ -34,10 +35,10 @@
     </div>
 </div>
 
-<button on:click="{() => createQRCode("https://twitter.com")}"><i class="fa-brands fa-square-twitter" /></button>
-<button on:click="{() => createQRCode("https://instagram.com")}"><i class="fa-brands fa-square-instagram" /></button>
-<button on:click="{() => createQRCode("https://whatsapp.com")}"><i class="fa-brands fa-square-whatsapp" /></button>
-<button on:click="{() => createQRCode("https://flicks.jetzt")}"><i class="fa-sharp fa-solid fa-comment-sms" /></button>
+<button on:click="{() => createQRCode(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${sentence} #aufgeschrieben #nationalbibliothek`)}`)}"><i class="fa-brands fa-square-twitter" /></button>
+<button on:click="{() => createQRCode(`instagram://sharesheet?text={${sentence}}`)}"><i class="fa-brands fa-square-instagram" /></button>
+<button on:click="{() => createQRCode(`https://api.whatsapp.com/send?text=${encodeURIComponent(sentence)}`)}"><i class="fa-brands fa-square-whatsapp" /></button>
+<button on:click="{() => createQRCode(`SMSTO::${sentence}`)}"><i class="fa-sharp fa-solid fa-comment-sms" /></button>
 
 <style lang="scss">
 	@use '../lib/assets/styles/mixins.scss' as *;

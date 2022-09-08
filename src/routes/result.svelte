@@ -114,7 +114,7 @@
 	<aside>
 		<Print {sentence} />
 		<div class="qr">
-			<b>Teilen:</b><Qrcode />
+			<b>Teilen:</b><Qrcode {sentence} />
 		</div>
 		<a class="button" href="/" on:click={config.return}>Startseite</a>
 		<a class="button" href="/info">Informationen</a>
