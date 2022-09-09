@@ -77,7 +77,7 @@
 
 <div class="container">
 	<main>
-		{#if !$config.author && movement && $config.intro}
+		{#if !$config.author && $config.intro}
 			<section class="intro">
 				{#each activeSentences as sentence}
 					<p transition:fade>{@html sentence}</p>
