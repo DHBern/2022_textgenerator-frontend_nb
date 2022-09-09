@@ -22,8 +22,6 @@
 	let movement, introOver = false;
 
 	const sentences = [
-		'Hallo!',
-		'Kommen Sie näher...',
 		'Nur keine Angst.',
 		'Ich bin intelligent, künstlich intelligent.',
 		`Ich schreibe Literatur. Ich kann Robert Walser und Emmy Hennings.`
@@ -32,7 +30,10 @@
 	/**
 	 * @type {[string]|[]}
 	 */
-	let activeSentences = [];
+	let activeSentences = [
+		'Hallo!',
+		'Kommen Sie näher...',
+	];
 
 	const movementCheck = () => {
 		if ($config.intro) {
@@ -66,7 +67,7 @@
 	}
 
 	// If the intro is over, we show the author
-	$: if (activeSentences.length === sentences.length) {
+	$: if (activeSentences.length === sentences.length + 2) {
 		setTimeout(() => {
 			introOver = true;
 		}, 1500);
