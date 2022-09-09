@@ -120,10 +120,12 @@
 		<img alt={info[$config.author]?.fullname} src={`${$config?.author || 'walser'}.jpg`} />
 	</main>
 	<aside>
-		<Print {sentence} />
-		<div class="qr">
-			<b>Teilen:</b><Qrcode {sentence} />
-		</div>
+		{#if sentence}
+			<Print {sentence} />
+			<div class="qr">
+				<b>Teilen:</b><Qrcode {sentence} />
+			</div>
+		{/if}
 		<a class="button" href="/" on:click={config.return}>Startseite</a>
 		<a class="button" href="/info">Informationen</a>
 	</aside>
