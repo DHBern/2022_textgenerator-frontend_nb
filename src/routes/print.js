@@ -20,10 +20,15 @@ export async function POST({ request }) {
 
 	`;
 
-	const result = await receiptio.print(message, options);
+	const result = receiptio.print(message, options);
 	console.log(result);
-
-	if ((await result) === 'success') {
+	return {
+		status: 200,
+		body: {
+			message: 'sent'
+		}
+	};
+	/*if ((await result) === 'success') {
 		return {
 			status: 200,
 			body: {
@@ -37,5 +42,5 @@ export async function POST({ request }) {
 				message: 'failed'
 			}
 		};
-	}
+	}*/
 }
