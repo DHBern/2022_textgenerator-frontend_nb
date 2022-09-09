@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import receiptio from 'receiptio';
 
 const imageAsBase64 = fs.readFileSync('./static/logo.png', 'base64');
-const options = "-d /dev/usb/lp0 -c 30";
+const options = "-d /dev/usb/lp0";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function POST({ request }) {
