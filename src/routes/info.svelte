@@ -21,6 +21,7 @@
 			{#each info[$config.author]?.description as sentence}
 			<p>{sentence}</p>
 			{/each}
+			<p>Ich wurde von den <a href="https://www.dh.unibe.ch/">Digital Humanities der Universität Bern</a> erzeugt.</p>
 		{/if}
 	</article>
 </main>
