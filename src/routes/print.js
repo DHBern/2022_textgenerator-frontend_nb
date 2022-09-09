@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import receiptio from 'receiptio';
 
 const imageAsBase64 = fs.readFileSync('./static/logo.png', 'base64');
-const options = "-d /dev/usb/lp0";
+const options = "-d /dev/usb/lp0 -t 0";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function POST({ request }) {
@@ -22,13 +22,7 @@ export async function POST({ request }) {
 
 	const result = receiptio.print(message, options);
 	console.log(result);
-	return {
-		status: 200,
-		body: {
-			message: 'sent'
-		}
-	};
-	/*if ((await result) === 'success') {
+	if ((await result) === 'success') {
 		return {
 			status: 200,
 			body: {
@@ -42,5 +36,5 @@ export async function POST({ request }) {
 				message: 'failed'
 			}
 		};
-	}*/
+	}
 }
