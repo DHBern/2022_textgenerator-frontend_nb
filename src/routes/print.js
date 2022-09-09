@@ -16,7 +16,7 @@ export async function POST({ request }) {
 
 	Alle Texte auf "www.nationalbibliothek.ch
 
-	{code:www.nationalbibliothek.ch; option:qrcode,6,M}
+	{code:https://www.nationalbibliothek.ch/de/aufgeschrieben-104.html; option:qrcode,6,M}
 
 	`;
 
