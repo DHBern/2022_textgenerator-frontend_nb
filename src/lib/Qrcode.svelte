@@ -1,37 +1,19 @@
 <script>
 	let lightbox;
-	let qrcode;
-    let qrBox;
+	let qrUrl = 'http://nationalbibliothek.ch';
 
     export let sentence = '';
 
-    const initializeQr = () => {
-        //qrcode = new QRCode(qrBox);
-        qrcode = new QRCode(qrBox, {
-            text: 'http://www.nationalbibliothek.ch',
-            width: 800,
-            height: 800,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H
-        });
-    };
-
 	const createQRCode = (url) => {
-        qrcode.makeCode(url);
         lightbox.style.display = "flex";
+        qrUrl = url;
 	};
 </script>
-
-<svelte:head>
-	<script
-		src="https://cdn.jsdelivr.net/gh/19z/qrcodejs-fixUTF8/qrcode.min.js" on:load={initializeQr}></script>
-</svelte:head>
 
 <div class="lightbox" bind:this={lightbox} on:click="{() => {lightbox.style.display = "none"}}">
     <div class="container">
         <p>(Schliessen durch Klicken)</p>
-        <div bind:this={qrBox} />
+        <img src="{`https://api.qrserver.com/v1/create-qr-code/?size=800x800&data=${qrUrl}`}" alt="qr-code" />
     </div>
 </div>
 
