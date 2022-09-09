@@ -10,11 +10,13 @@ export async function POST({ request }) {
 	const message = `
 	{image:${imageAsBase64}}
 
-	^^${author}, Bern, ${new Date().toLocaleDateString('de-CH')}
+	^^${author},
+	^^Bern, ${new Date().toLocaleDateString('de-CH')}
 
 	${sentence}
 
-	Alle Texte auf "www.nationalbibliothek.ch
+	Alle Texte auf
+	"www.nationalbibliothek.ch
 
 	{code:www.nationalbibliothek.ch; option:qrcode,6,M}
 
