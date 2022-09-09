@@ -13,7 +13,7 @@
 <div class="lightbox" bind:this={lightbox} on:click="{() => {lightbox.style.display = "none"}}">
     <div class="container">
         <p>(Schliessen durch Klicken)</p>
-        <img src="{`https://api.qrserver.com/v1/create-qr-code/?size=800x800&data=${qrUrl}`}" alt="qr-code" />
+        <img src="{`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${qrUrl}`}" alt="qr-code" />
     </div>
 </div>
 
