@@ -21,7 +21,6 @@
 		const response = await fetch(info[$config.author].api_url, {
 			headers: { Authorization: `Bearer ${import.meta.env.VITE_HUGGINGFACE_KEY}` },
 			method: 'POST',
-			mode: 'no-cors',
 			body: JSON.stringify(data)
 		});
 		if (response.ok) {
