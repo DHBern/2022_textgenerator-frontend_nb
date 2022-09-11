@@ -66,7 +66,7 @@
 			method: 'POST',
 			body: JSON.stringify({
 				sentence: sentence,
-				author: $config.author
+				author: info[$config.author]?.fullname
 			})
 		});
 		return res;
