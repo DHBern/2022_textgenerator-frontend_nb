@@ -44,10 +44,6 @@
 			top_k: 100,
 			num_return_sequences: 1,
 			max_length: 100
-		},
-		options: {
-			wait_for_model: false,
-			use_cache: false
 		}
 	};
 
