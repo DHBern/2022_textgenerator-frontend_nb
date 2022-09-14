@@ -43,7 +43,11 @@
 			temperature: $config.temp,
 			top_k: 100,
 			num_return_sequences: 1,
-			max_length: 100
+			max_new_tokens: 100,
+			repetition_penalty: 50.01
+		},
+		options: {
+			use_cache: false,
 		}
 	};
 
