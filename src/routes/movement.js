@@ -11,6 +11,6 @@ export function GET() {
     if (import.meta.env.VITE_LINUX === 'true') {
         return new Response(JSON.stringify({ movement: sensor.readSync() === 1 }));
     } else {
-        return new Response(JSON.stringify({ movement: true }));
+        return new Response(JSON.stringify({ movement: false }));
     }
 }

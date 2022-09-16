@@ -8,18 +8,33 @@
 	import { OnMount } from 'fractils';
 	import { onIdle } from 'svelte-idle';
 
+	let containerE;
+
 	onIdle(() => {
 		if (movement) {
 			console.log('idle home');
 			location.reload();
 		}
-	})
+	});
 
+	const mouseMoveSetter = () => {
+		movement = true;
+		containerE?.removeEventListener('mousemove', mouseMoveSetter);
+	};
+
+	$: {
+		if ($config.intro && !movement) {
+			containerE?.addEventListener('mousemove', mouseMoveSetter);
+		} else {
+			containerE?.removeEventListener('mousemove', mouseMoveSetter);
+		}
+	}
 
 	/**
 	 * @type {boolean}
 	 */
-	let movement, introOver = false;
+	let movement,
+		introOver = false;
 
 	const sentences = [
 		'Nur keine Angst.',
@@ -30,10 +45,7 @@
 	/**
 	 * @type {[string]|[]}
 	 */
-	let activeSentences = [
-		'Hallo!',
-		'Kommen Sie näher...',
-	];
+	let activeSentences = ['Hallo!', 'Kommen Sie näher...'];
 
 	const movementCheck = () => {
 		if ($config.intro) {
@@ -46,20 +58,20 @@
 				}
 			}, 1000);
 		}
-	}
+	};
 
 	onMount(() => {
 		movementCheck();
 	});
 
-	const addActiveSentences= () => {
+	const addActiveSentences = () => {
 		for (let i = 0; i < sentences.length; i++) {
 			setTimeout(() => {
 				activeSentences.push(sentences[i]);
 				activeSentences = activeSentences;
 			}, i * 3500);
 		}
-	}
+	};
 
 	// If we have movement, we start the intro
 	$: if (movement && $config.intro) {
@@ -72,10 +84,9 @@
 			introOver = true;
 		}, 1500);
 	}
-
 </script>
 
-<div class="container">
+<div class="container" bind:this={containerE}>
 	<main>
 		{#if !$config.author && $config.intro}
 			<section class="intro">
