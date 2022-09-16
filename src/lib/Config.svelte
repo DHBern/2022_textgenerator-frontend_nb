@@ -39,7 +39,7 @@
 		>Soll ich {info[$config.author].genitiv} Wortschatz nutzen? Oder {info[$config.author].pronoun}e Art, Sätze zu formen?
 	</label>
 	<div class="rangeslider">
-		<input id="temperature" type="range" min="0.3" max="0.9" step="0.3" bind:value={$config.temp} />
+		<input id="temperature" type="range" min="0.3" max="0.9" step="0.03" bind:value={$config.temp} />
 		<ol>
 			<li class:active={$config.temp === 0.3}>Wortschatz</li>
 			<li class:active={$config.temp === 0.9}>Satzbau</li>
