@@ -108,14 +108,13 @@
 
 <div class="result-container">
 	<main>
+		<div class="scrollblock">
 		{#if sentence}
 			<p>{sentence}</p>
 		{:else}
-			<p>Ich schreibe{dots}</p>
-			<!--<div class="spinner">
-				<i class="fa-solid fa-spinner fa-spin-pulse fa-xl" />
-			</div>-->
+				<p>Ich schreibe{dots}</p>
 		{/if}
+		</div>
 		<img alt={info[$config.author]?.fullname} src={`${$config?.author || 'walser'}.jpg`} />
 	</main>
 	<aside>
@@ -142,13 +141,21 @@
 		display: grid;
 		grid-template-columns: 1fr 10vw;
 		grid-template-rows: 1fr 10vh;
-		p {
+		margin-bottom: -13vw;
+
+		.scrollblock {
 			grid-column: 1 / -1;
-			font-size: 2rem;
 			@include bluebox;
-			margin-top: 0;
+			p {
+				font-size: 2rem;
+				margin: 0;
+				max-height: 60vh;
+				overflow-y: auto;
+			}
 		}
+
 		img {
+			margin-top: 80px;
 			grid-column: -2;
 			grid-row: -2;
 			width: 10vw;
