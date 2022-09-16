@@ -8,6 +8,10 @@
         lightbox.style.display = "flex";
         qrUrl = url;
 	};
+
+    const fixedEncode = (str) => {
+        return encodeURIComponent(str.replace(/ /g, '+'));
+    };
 </script>
 
 <div class="lightbox" bind:this={lightbox} on:click="{() => {lightbox.style.display = "none"}}">
@@ -17,9 +21,9 @@
     </div>
 </div>
 
-<button on:click="{() => createQRCode(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${sentence} #aufgeschrieben #nationalbibliothek`)}`)}"><i class="fa-brands fa-square-twitter" /></button>
+<button on:click="{() => createQRCode(`https://twitter.com/intent/tweet?text=${fixedEncode(`${sentence}&hashtags=aufgeschrieben,dieNB`)}`)}"><i class="fa-brands fa-square-twitter" /></button>
 <button on:click="{() => createQRCode(`instagram://sharesheet?text={${sentence}}`)}"><i class="fa-brands fa-square-instagram" /></button>
-<button on:click="{() => createQRCode(`https://api.whatsapp.com/send?text=${encodeURIComponent(sentence)}`)}"><i class="fa-brands fa-square-whatsapp" /></button>
+<button on:click="{() => createQRCode(`https://api.whatsapp.com/send?text=${fixedEncode(sentence)}`)}"><i class="fa-brands fa-square-whatsapp" /></button>
 <button on:click="{() => createQRCode(`SMSTO::${sentence}`)}"><i class="fa-sharp fa-solid fa-comment-sms" /></button>
 
 <style lang="scss">
